@@ -12,3 +12,5 @@ Dataset format: 150 x 5 matrix, each row is an entry, and each column correspond
 Code:
   Implements gradient descent and vectorized logistic regression.
   Implements one vs all classification.
+  Commented out lines are used for testing gradient descent. They plot the cost as a function of iteration.
+  Needs to have the iris.data file in the same directory for code to run
