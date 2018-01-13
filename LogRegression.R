@@ -1,4 +1,3 @@
-
 z.h <- function(theta,x){
   return(1/(1+exp(1)^((-1)*(theta%*%t(x)))))
 }
@@ -13,8 +12,9 @@ grad <- function(x,y,theta){
 grad.Desc <- function(y){
   Theta = matrix(c(.5,.5,.5,.5),nrow=1,ncol=4,byrow=TRUE)
 
-  maxiter <- 1000
-  
+  maxiter <- 60
+
+  #y <- get.Key(name)
   x <- prep.Data()
   #cost <- 0
   m = dim(x)[1]
@@ -36,7 +36,12 @@ prep.Data <- function(){
   x <- iris
   x$Species <- NULL
   z <- matrix(as.numeric(unlist(x)),nrow=150,ncol=4)
-  return(z)
+  z.scaled <- z
+  z.scaled[,1] <- (z[,1] - mean(z[,1]))/sd(z[,1])
+  z.scaled[,2] <- (z[,2] - mean(z[,2]))/sd(z[,2])
+  z.scaled[,3] <- (z[,3] - mean(z[,3]))/sd(z[,3])
+  z.scaled[,4] <- (z[,4] - mean(z[,4]))/sd(z[,4])
+  return(z.scaled)
 }
 
 get.Key <- function(name){
